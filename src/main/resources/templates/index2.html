@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+<h1 th:text="${host}">Hello World</h1>
+
+<div id="msgFrompPush"></div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    //EventSource对象只有新式浏览器才有(Chrome、Firefox)，EventSource是SSE的客户端
+    if(!!window.EventSource){
+        var source=new EventSource('push2');
+        s='';
+        //添加SSE客户端监听，在此获得服务器端推送的消息
+        source.addEventListener('message',function(e){
+            s+=e.data+"<br/>";
+            $("#msgFrompPush").html(s);
+        });
+
+        source.addEventListener('open',function(e){
+            console.log("连接打开")
+        });
+
+        source.addEventListener('error',function(e){
+            if(e.readyState==EventSource.CLOSED){
+                console.log("连接关闭");
+            }else{
+                console.log(e.readyState);
+            }
+        },false);
+    }else{
+        console.log("浏览器不支持")
+    }
+</script>
+
+</body>
+</html>

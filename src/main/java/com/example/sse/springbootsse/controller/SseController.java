@@ -9,6 +9,7 @@ import java.util.Random;
 @Controller
 public class SseController {
 
+
     // 服务器端SSE支持输出媒体类型为text/event-stream
     @RequestMapping(value="/push",produces="text/event-stream")
     public @ResponseBody
@@ -20,7 +21,10 @@ public class SseController {
         }catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         return "data:Test"+r.nextInt()+"\n\n";
     }
+
+
 
 }
