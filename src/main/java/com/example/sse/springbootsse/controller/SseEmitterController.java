@@ -23,7 +23,7 @@ public class SseEmitterController {
         taskExecutorConfiguration.getAsyncExecutor().execute(() -> {
             try {
                 for(int i=0;i<100;i++){
-                    emitter.send("hello"+i);
+                    emitter.send("中文测试：hello"+i);
                     System.out.println("emit:"+i+" hello");
                     Thread.sleep(1000*1);
                 }
